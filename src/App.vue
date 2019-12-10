@@ -11,8 +11,8 @@ import Rovers from './components/Rovers.vue'
 export default {
   name: 'app',
   components: {
-    Search,
-   Rovers 
+  Search,
+  Rovers
   }
 }
 </script>

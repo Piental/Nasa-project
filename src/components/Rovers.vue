@@ -1,22 +1,43 @@
 <template>
 <div class="rovers">
+
     <h1>Rovers</h1>
+ <button v-if="selectedRover !== ''" @click="goBack()">return</button>  
 <div v-bind:key="rover.id" v-for="rover in rovers"> 
-<h2 v-bind="rover">{{rover.name}}</h2>
+<div v-if="selectedRover == ''" v-bind="rover" @click="showSearch($event)">
+<h2>{{rover.name}}</h2>
 <p>Landing Date: {{rover.landing_date}}</p>
 </div>
-</div>
+  </div>
+   
+<Images v-if="selectedRover !== ''" v-bind:selectedRover='selectedRover'/>
+  </div>
 </template>
 
 <script>
-import axios from 'axios';
+import axios from 'axios' 
+import Images from './Images.vue'
 export default {
   name: 'Rovers',
+  components: {
+    Images
+  },
   data () {
     return {
-      rovers: []
+      rovers: [],
+      selectedRover: ""
     }
   },
+  methods: {
+showSearch() {
+this.selectedRover = event.toElement.firstChild.innerText;
+console.log(event)},
+goBack() {
+  this.selectedRover="";
+}
+
+  },
+
   created()  {
           let url = "https://api.nasa.gov/mars-photos/api/v1/rovers?api_key=Grpbub1rsWu0VD1sEedIHf8Eeh1qcawwg7rQ3e8l";
         axios.get(url).then( response => {
