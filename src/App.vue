@@ -1,29 +1,37 @@
 <template>
   <div id="app">
-    <Search/>
-    <Rovers/>
+    <Header />
+    <Search v-bind:selectedRover="selectedRover" v-if="selectedRover==''" />
+    <Rovers />
   </div>
 </template>
 
 <script>
-import Search from './components/Search.vue'
-import Rovers from './components/Rovers.vue'
+import Header from "./components/Header.vue";
+import Search from "./components/Search.vue";
+import Rovers from "./components/Rovers.vue";
 export default {
-  name: 'app',
+  name: "app",
   components: {
-  Search,
-  Rovers
-  }
-}
+    Header,
+    Search,
+    Rovers
+  },
+  props: ["selectedRover"]
+};
 </script>
 
 <style>
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  color: whitesmoke;
+  background-image: url(./assets/background.png);
+  background-size: auto;
+  margin: 0px;
+  min-height: 720px;
+}
+body {
+  margin: 0%;
 }
 </style>
