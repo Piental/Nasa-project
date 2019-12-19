@@ -1,12 +1,20 @@
 <template>
-  <div class="search" v-if="selectedRover !==''">
-    <h2>Type in your search term</h2>
-    <form @submit.prevent="getResult(query)">
-      <input type="text" placeholder="Type in your search" v-model="query" />
-    </form>
+  <div class="search">
+    <div class="searchbar text-white bg-dark mb-3">
+      <h4>Type in for the Nasa pictures of any object!</h4>
+      <form @submit.prevent="getResult(query)">
+        <input
+          class="form-control"
+          type="text"
+          placeholder="Type in your search"
+          v-model="query"
+        />
+        <input type="submit" value="Search" class="btn-lg btn-outline-info" />
+      </form>
+    </div>
     <div class="results" v-if="results">
       <div v-bind:key="result.id" v-for="result in results">
-        <img v-bind:src="result.links[0].href" />
+        <img class="img" v-bind:src="result.links[0].href" />
       </div>
     </div>
   </div>
@@ -23,7 +31,6 @@ export default {
       results: ""
     };
   },
-  props: ["selectedRover"],
   methods: {
     getResult(query) {
       axios
@@ -33,6 +40,7 @@ export default {
         .then(response => {
           console.log(response.data.collection.items);
           this.results = response.data.collection.items;
+          console.log(this.rover);
         });
     }
   }
@@ -41,4 +49,23 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.searchbar {
+  margin: 9px;
+  padding: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border: rgba(0, 0, 0, 0.19) 2px solid;
+  border-radius: 15px;
+}
+.img {
+  width: 356px;
+  padding: 0px 2px;
+}
+
+.btn-lg {
+  margin: 10px;
+}
+
+h4 {
+  margin: 10px;
+}
 </style>

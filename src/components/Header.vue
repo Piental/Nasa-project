@@ -3,14 +3,26 @@
     <img id="logo" src="../assets/nasa-logo.png" />
     <b id="title">Nasa's Mars Rovers Gallery</b>
     <div class="header-right">
-      <a href="Login.vue">Login</a>
-      <a href="Chat.vue">Chat</a>
+      <router-link v-if="userName == ''" to="/Login">Login</router-link>
+      <router-link v-if="userName !== ''" to="/Logout">Logout</router-link>
+      <router-link to="/Chat">Chat</router-link>
     </div>
   </div>
 </template>
 <script>
+import Login from "./Login.vue";
+import Logout from "./Logout.vue";
 export default {
-  name: "Header"
+  name: "Header",
+  data() {
+    return {
+      userName: ""
+    };
+  },
+  created() {
+    this.userName = localStorage.username;
+    console.log(this.userName);
+  }
 };
 </script>
 
@@ -21,6 +33,8 @@ export default {
   overflow: hidden;
   background-color: #000000;
   border-bottom: #ddd 1px solid;
+  position: fixed;
+  z-index: 2000;
 }
 
 #logo {

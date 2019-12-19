@@ -1,43 +1,55 @@
 <template>
   <div>
     <div class="info">
-      <img v-if="this.selectedRover.name == 'Curiosity'" src="../assets/curiosity_cameras.jpg" />
+      <img
+        v-if="this.selectedRover.name == 'Curiosity'"
+        src="../assets/curiosity_cameras.jpg"
+      />
       <img v-else src="../assets/spirit_cameras.jpg" />
     </div>
     <div class="card text-white bg-dark mb-3">
       <h5>Search for the pictures:</h5>
       <form @submit="addDate">
         <div class="flexcontainer">
-          <input class="date form-control" v-model="date" name="date" type="date" min="2000-01-02" />
-          <div class="input-group-append">
-            <select
-              v-model="camera"
-              class="btn btn-outline-secondary dropdown-toggle"
-              type="button"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
+          <input
+            class="date form-control"
+            v-model="date"
+            name="date"
+            type="date"
+            min="2000-01-02"
+          />
+          <select
+            v-model="camera"
+            class="btn btn-outline-secondary dropdown-toggle"
+            type="button"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            <option class="dropdown-item">All cameras</option>
+            <option
+              v-bind:key="camera.id"
+              v-for="camera in selectedRover.cameras"
+              class="dropdown-item"
+              >{{ camera.name }}</option
             >
-              <option class="dropdown-item">All cameras</option>
-              <option
-                v-bind:key="camera.id"
-                v-for="camera in selectedRover.cameras"
-                class="dropdown-item"
-              >{{camera.name}}</option>
-            </select>
-          </div>
+          </select>
 
-          <input type="submit" value="Search" class="btn btn-outline-info" />
+          <input
+            type="submit"
+            value="Search"
+            class="btn btn-outline-info white"
+          />
         </div>
       </form>
     </div>
     <div v-bind:key="result.id" v-for="result in results">
       <img v-bind:src="result.img_src" />
       <div>
-        <p v-bind="results">Photo ID: {{result.id}}</p>
-        <p v-bind="results">Earth date: {{result.earth_date}}</p>
-        <p v-bind="results">Sol: {{result.sol}}</p>
-        <p v-bind="results">Camera full name: {{result.camera.full_name}}</p>
+        <p v-bind="results">Photo ID: {{ result.id }}</p>
+        <p v-bind="results">Earth date: {{ result.earth_date }}</p>
+        <p v-bind="results">Sol: {{ result.sol }}</p>
+        <p v-bind="results">Camera full name: {{ result.camera.full_name }}</p>
       </div>
     </div>
   </div>
@@ -84,16 +96,26 @@ export default {
 <style scoped>
 .flexcontainer {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-around;
 }
 .card {
   margin: 9px;
 }
+.btn {
+  margin: 5px;
+  height: 40px;
+}
 .date {
-  width: 140px;
+  width: 200px;
+  margin: 5px;
 }
 img {
   width: 356px;
-  padding: 2px 2px;
+  padding: 0px 2px;
+}
+
+h5 {
+  padding: 5px;
 }
 </style>
