@@ -45,7 +45,8 @@ export default {
 <style scoped>
 .flexbox {
   display: flex;
-  align-content: center;
+  align-items: center;
+  justify-content: center;
   height: 300px;
 }
 

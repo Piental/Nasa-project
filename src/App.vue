@@ -18,15 +18,14 @@ export default {
   text-align: center;
   color: whitesmoke;
   background-image: url(./assets/background.png);
-  background-size: cover;
   margin: 0px;
-  min-height: 667px;
   min-width: 375px;
-  position: cover;
+  min-height: 667px;
+  background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
 body {
-  margin: 0%;
+  padding-bottom: -20px;
 }
 </style>

@@ -3,9 +3,16 @@
     <img id="logo" src="../assets/nasa-logo.png" />
     <b id="title">Nasa's Mars Rovers Gallery</b>
     <div class="header-right">
-      <router-link v-if="userName == ''" to="/Login">Login</router-link>
-      <router-link v-if="userName !== ''" to="/Logout">Logout</router-link>
-      <router-link to="/Chat">Chat</router-link>
+      <b-dropdown
+        id="dropdown-right"
+        right
+        text="Menu"
+        variant="outline-dark text-white border-white "
+      >
+        <b-dropdown-item v-if="userName == ''" href:router-link to="/Login">Login</b-dropdown-item>
+        <b-dropdown-item v-if="userName !== ''" href:router-link to="/Logout">Logout</b-dropdown-item>
+        <b-dropdown-item href:router-link to="/Chat">Chat</b-dropdown-item>
+      </b-dropdown>
     </div>
   </div>
 </template>
@@ -30,15 +37,15 @@ export default {
 .header {
   display: grid;
   grid-template-columns: 70px auto 100px;
-  overflow: hidden;
+
   background-color: #000000;
   border-bottom: #ddd 1px solid;
   position: fixed;
   z-index: 2000;
+  width: 100%;
 }
 
 #logo {
-  stop-opacity: inherit;
   grid-column-start: 1;
   grid-column-end: 2;
   height: 50px;
@@ -62,16 +69,6 @@ export default {
   grid-column-end: 3;
   font-size: 16px;
   align-self: center;
-}
-
-.header a:hover {
-  background-color: #ddd;
-  color: black;
-}
-
-.header a.active {
-  background-color: dodgerblue;
-  color: white;
 }
 
 .header-right {

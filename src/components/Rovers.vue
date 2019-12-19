@@ -1,9 +1,7 @@
 <template>
   <div class="rovers">
     <h1>Rovers</h1>
-    <button class="btn btn-light" v-if="selectedRover !== ''" @click="goBack()">
-      return
-    </button>
+    <button class="btn btn-light" v-if="selectedRover !== ''" @click="goBack()">return</button>
     <div class="CardContainer" v-bind:key="rover.id" v-for="rover in rovers">
       <div
         class="card text-white bg-dark mb-3"
@@ -14,26 +12,20 @@
       >
         <div class="card-body">
           <h2 class="card-title">{{ rover.name }}</h2>
-          <h6 class="card-subtitle" v-if="selectedRover !== ''">
-            Launch Date: {{ rover.launch_date }}
-          </h6>
-          <h6 class="card-subtitle" v-if="selectedRover !== ''">
-            Landing Date: {{ rover.landing_date }}
-          </h6>
-          <h6 class="card-subtitle" v-if="selectedRover !== ''">
-            Latest pictures from: {{ rover.max_date }}
-          </h6>
-          <h6 class="card-subtitle" v-if="selectedRover !== ''">
-            Status: {{ rover.status }}
-          </h6>
+          <h6 class="card-subtitle" v-if="selectedRover !== ''">Launch Date: {{ rover.launch_date }}</h6>
+          <h6
+            class="card-subtitle"
+            v-if="selectedRover !== ''"
+          >Landing Date: {{ rover.landing_date }}</h6>
+          <h6
+            class="card-subtitle"
+            v-if="selectedRover !== ''"
+          >Latest pictures from: {{ rover.max_date }}</h6>
+          <h6 class="card-subtitle" v-if="selectedRover !== ''">Status: {{ rover.status }}</h6>
         </div>
       </div>
     </div>
-    <Images
-      class="image"
-      v-if="selectedRover !== ''"
-      v-bind:selectedRover="selectedRover"
-    />
+    <Images class="image" v-if="selectedRover !== ''" v-bind:selectedRover="selectedRover" />
     <Search v-if="selectedRover == ''" v-bind:selectedRover="selectedRover" />
   </div>
 </template>
@@ -83,10 +75,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
 .card {
-  margin: 9px;
-  margin-bottom: 0px;
+  width: 97%;
+  margin: 8px auto 0 auto;
 }
 
 h6 {
@@ -98,7 +89,7 @@ h1 {
 
 .btn {
   height: 45px;
-  width: 356px;
+  width: 97%;
   padding: 2px 2px;
 }
 </style>
